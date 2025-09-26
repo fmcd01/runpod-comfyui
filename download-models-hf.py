@@ -5,8 +5,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 # Config
-model_type = os.environ.get("MODEL_TYPE")  # no default now
-token = os.environ.get("HF_TOKEN", None)
+model_type = os.environ.get("MODEL_TYPE")  # no default
+token = os.environ.get("HUGGINGFACE_ACCESS_TOKEN", None)
 home = os.environ.get("RP_WORKSPACE", "")
 comfyui = "ComfyUI"
 model_dir = os.path.join(home, comfyui, "models")
@@ -49,7 +49,6 @@ def download_file(item):
 
     try:
         if "huggingface.co" in url:
-            # Hugging Face URL
             repo_id = url.split("huggingface.co/")[-1].split("/resolve")[0]
             filename = url.split("/")[-1]
             hf_hub_download(
@@ -57,15 +56,12 @@ def download_file(item):
                 filename=filename,
                 token=token if use_auth else None,
                 cache_dir=path,
-                local_dir=path,
-                local_dir_use_symlinks=False
+                local_dir=path
             )
-            # Move to final destination if needed
             file_path = os.path.join(path, filename)
             if file_path != dest:
                 os.rename(file_path, dest)
         else:
-            # Non-HF URL fallback
             headers = {"Authorization": f"Bearer {token}"} if use_auth else {}
             with requests.get(url, headers=headers, stream=True) as r, open(tmp_dest, "wb") as f:
                 r.raise_for_status()
@@ -73,13 +69,20 @@ def download_file(item):
                     f.write(chunk)
             os.rename(tmp_dest, dest)
         print(f"Downloaded {dest} ✅")
+    except requests.HTTPError as e:
+        if e.response.status_code == 403:
+            print(f"Skipping {item['name']} (access denied / gated repo).")
+        else:
+            print(f"Error downloading {item['name']}: {e}")
+        if os.path.exists(tmp_dest):
+            os.remove(tmp_dest)
     except Exception as e:
         print(f"Error downloading {item['name']}: {e}")
         if os.path.exists(tmp_dest):
             os.remove(tmp_dest)
 
-# Download all files in parallel
-max_workers = min(4, len(items_to_download))  # Adjust based on bandwidth
+# Parallel download
+max_workers = min(4, len(items_to_download))
 with ThreadPoolExecutor(max_workers=max_workers) as executor:
     futures = [executor.submit(download_file, item) for item in items_to_download]
     for future in as_completed(futures):
