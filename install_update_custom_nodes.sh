@@ -3,21 +3,36 @@ set -e  # Exit the script if any statement returns a non-true return value
 
 COMFYUI_DIR=/workspace/ComfyUI
 
-# Install additional custom nodes
+
+# Ensure that custome nodes directory exists
+mkdir -p $COMFYUI_DIR/custom_nodes
+
+# Install additional custom nodes from Git repos
 CUSTOM_NODES=(
+	"https://github.com/ltdrdata/ComfyUI-Manager"
 	"https://github.com/kijai/ComfyUI-KJNodes"
         "https://github.com/MoonGoblinDev/Civicomfy"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do
 	repo_name=$(basename "$repo")
+	echo "Check status for repo: $repo_name, in $COMFYUI_DIR/custom_nodes/$repo_name"
         if [ ! -d "$COMFYUI_DIR/custom_nodes/$repo_name" ]; then
             echo "Installing $repo_name..."
             cd "$COMFYUI_DIR/custom_nodes"
             git clone "$repo"
+	else
+		echo "Upgrading $repo_name..."
+		cd "$COMFYUI_DIR/custom_nodes/$repo_name"
+		git pull
         fi
 done
 
+
+# Enable venv
+echo "Enable venv..."
+cd $COMFYUI_DIR
+source venv/bin/activate
 
 # Install dependencies for custom nodes
 echo "Installing/updating dependencies for custom nodes..."
