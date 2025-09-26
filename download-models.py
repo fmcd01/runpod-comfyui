@@ -2,13 +2,16 @@ import os, sys, yaml, subprocess
 
 model_type = os.environ.get("MODEL_TYPE", "flux1-dev-fp8")
 token = os.environ.get("HUGGINGFACE_ACCESS_TOKEN", "")
+home = os.environ.get("RP_WORKSPACE", "")
+comfyui = "ComfyUI"
+model_dir = f"{home}/{comfyui}/models"
 
-with open("/models.yaml") as f:
+with open("./models.yaml") as f:
     config = yaml.safe_load(f)
 
 # Download common files
 for item in config.get("common", []):
-    path = f"/comfyui/models/{item.get('path', 'clip')}"
+    path = f"{model_dir}/{item.get('path', 'clip')}"
     os.makedirs(path, exist_ok=True)
     url = item["url"]
     dest = f"{path}/{item['name']}"
@@ -16,7 +19,7 @@ for item in config.get("common", []):
 
 # Download model-specific files
 for item in config["models"].get(model_type, []):
-    path = f"/comfyui/models/{item.get('path','checkpoints')}"
+    path = f"{model_dir}/{item.get('path','checkpoints')}"
     os.makedirs(path, exist_ok=True)
     url = item["url"]
     dest = f"{path}/{item['name']}"
