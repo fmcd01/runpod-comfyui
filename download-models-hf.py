@@ -11,25 +11,34 @@ token = os.environ.get("HUGGINGFACE_ACCESS_TOKEN", None)
 home = os.environ.get("RP_WORKSPACE", "")
 comfyui = "ComfyUI"
 model_dir = os.path.join(home, comfyui, "models")
-max_workers = 4  # Adjust for your bandwidth
+max_workers = 4  # adjust based on bandwidth
 
-# Load YAML
+# ----------------- Load YAML -----------------
 with open("./models.yaml") as f:
     config = yaml.safe_load(f)
 
-# Determine files to download
+# ----------------- Collect files to download -----------------
+items_to_download = []
 if model_type:
     if model_type not in config["models"]:
         raise ValueError(f"Unknown model_type: {model_type}")
-    items_to_download = config["models"][model_type]
+    items_to_download.extend(config["models"][model_type])
 else:
-    # Download all models
-    items_to_download = []
+    # all models
     for model_list in config["models"].values():
         items_to_download.extend(model_list)
 
+# ----------------- Deduplicate by URL + dest -----------------
+unique_downloads = {}
+for item in items_to_download:
+    path = os.path.join(model_dir, item.get("path", "checkpoints"))
+    os.makedirs(path, exist_ok=True)
+    dest = os.path.join(path, item["name"])
+    key = (item["url"], dest)
+    unique_downloads[key] = item  # overwrite duplicates safely
+
 # ----------------- Thread-safe locks -----------------
-download_locks = {}  # per-file lock
+download_locks = {}  # per-dest lock
 download_locks_lock = threading.Lock()
 
 def get_file_lock(dest_path):
@@ -65,7 +74,7 @@ def download_file(item):
 
         try:
             if "huggingface.co" in url:
-                # Hugging Face URL
+                # HF download
                 repo_id = url.split("huggingface.co/")[-1].split("/resolve")[0]
                 filename = url.split("/")[-1]
                 hf_hub_download(
@@ -79,7 +88,7 @@ def download_file(item):
                 if file_path != dest:
                     os.rename(file_path, dest)
             else:
-                # Non-HF URL
+                # Generic URL download
                 headers = {"Authorization": f"Bearer {token}"} if use_auth else {}
                 with requests.get(url, headers=headers, stream=True) as r, open(tmp_dest, "wb") as f:
                     r.raise_for_status()
@@ -102,6 +111,8 @@ def download_file(item):
 
 # ----------------- Parallel download -----------------
 with ThreadPoolExecutor(max_workers=max_workers) as executor:
-    futures = [executor.submit(download_file, item) for item in items_to_download]
+    futures = [executor.submit(download_file, item) for item in unique_downloads.values()]
     for future in as_completed(futures):
         future.result()
+
+print("\nAll downloads complete!")
