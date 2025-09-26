@@ -6,6 +6,3 @@ FIXED_ARGS="--listen 0.0.0.0 --port 8188"
 echo "Starting ComfyUI with default arguments"
 nohup python main.py $FIXED_ARGS &> /workspace/ComfyUI/comfyui.log &
 python main.py --listen --port 8188
-
-# Tail the log file
-tail -f /workspace/comfyui.log
