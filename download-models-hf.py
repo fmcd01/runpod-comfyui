@@ -5,8 +5,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 # Config
-model_type = os.environ.get("MODEL_TYPE", "flux1-dev-fp8")
-token = os.environ.get("HUGGINGFACE_ACCESS_TOKEN", None)
+model_type = os.environ.get("MODEL_TYPE")  # no default now
+token = os.environ.get("HF_TOKEN", None)
 home = os.environ.get("RP_WORKSPACE", "")
 comfyui = "ComfyUI"
 model_dir = os.path.join(home, comfyui, "models")
@@ -15,8 +15,16 @@ model_dir = os.path.join(home, comfyui, "models")
 with open("./models.yaml") as f:
     config = yaml.safe_load(f)
 
-if model_type not in config["models"]:
-    raise ValueError(f"Unknown model_type: {model_type}")
+# Determine which models to download
+if model_type:
+    if model_type not in config["models"]:
+        raise ValueError(f"Unknown model_type: {model_type}")
+    items_to_download = config["models"][model_type]
+else:
+    # Download all models
+    items_to_download = []
+    for model_list in config["models"].values():
+        items_to_download.extend(model_list)
 
 def download_file(item):
     """Download a single file safely with .part temporary file support."""
@@ -71,11 +79,8 @@ def download_file(item):
             os.remove(tmp_dest)
 
 # Download all files in parallel
-items_to_download = config["models"][model_type]
-
-max_workers = min(4, len(items_to_download))  # Adjust for your bandwidth
+max_workers = min(4, len(items_to_download))  # Adjust based on bandwidth
 with ThreadPoolExecutor(max_workers=max_workers) as executor:
     futures = [executor.submit(download_file, item) for item in items_to_download]
     for future in as_completed(futures):
-        # Trigger exceptions if any
         future.result()
