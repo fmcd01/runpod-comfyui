@@ -1,0 +1,48 @@
+common:
+  - name: clip_l.safetensors
+    url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors
+  - name: t5xxl_fp8_e4m3fn.safetensors
+    url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors
+
+models:
+  sdxl:
+    - name: sd_xl_base_1.0.safetensors
+      path: checkpoints
+      url: https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
+    - name: sdxl_vae.safetensors
+      path: vae
+      url: https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
+    - name: sdxl-vae-fp16-fix.safetensors
+      path: vae
+      url: https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
+
+  sd3:
+    - name: sd3_medium_incl_clips_t5xxlfp8.safetensors
+      path: checkpoints
+      url: https://huggingface.co/stabilityai/stable-diffusion-3-medium/resolve/main/sd3_medium_incl_clips_t5xxlfp8.safetensors
+      auth: true
+
+  flux1-schnell:
+    - name: flux1-schnell.safetensors
+      path: unet
+      url: https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/flux1-schnell.safetensors
+      auth: true
+    - name: ae.safetensors
+      path: vae
+      url: https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors
+      auth: true
+
+  flux1-dev:
+    - name: flux1-dev.safetensors
+      path: unet
+      url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors
+      auth: true
+    - name: ae.safetensors
+      path: vae
+      url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors
+      auth: true
+
+  flux1-dev-fp8:
+    - name: flux1-dev-fp8.safetensors
+      path: checkpoints
+      url: https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors
