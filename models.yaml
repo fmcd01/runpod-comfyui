@@ -47,7 +47,7 @@ models:
       url: https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors
     - name: uso-flux1-dit-lora-v1.safetensors
       path: loras
-      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/loras/uso-flux1-dit-lora-v1.safetensors?download=true
+      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/loras/uso-flux1-dit-lora-v1.safetensors
     - name: uso-flux1-projector-v1.safetensors
       path: model_patches
       url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/split_files/model_patches/uso-flux1-projector-v1.safetensors
