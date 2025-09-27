@@ -76,7 +76,7 @@ def download_file(item):
             if "huggingface.co" in url:
                 # HF download
                 repo_id = url.split("huggingface.co/")[-1].split("/resolve")[0]
-                filename = url.split("/")[-1]
+                filename = url.split("/resolve/main/")[-1]  # keep subfolders
                 hf_hub_download(
                     repo_id=repo_id,
                     filename=filename,
@@ -84,9 +84,10 @@ def download_file(item):
                     cache_dir=path,
                     local_dir=path
                 )
-                file_path = os.path.join(path, filename)
+                file_path = os.path.join(path, os.path.basename(filename))
                 if file_path != dest:
                     os.rename(file_path, dest)
+
             else:
                 # Generic URL download
                 headers = {"Authorization": f"Bearer {token}"} if use_auth else {}
