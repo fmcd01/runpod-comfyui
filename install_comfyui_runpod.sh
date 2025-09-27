@@ -65,9 +65,6 @@ chmod +x /workspace/ComfyUI/main.py
 # Kill any process using port 3001
 fuser -k 8188/tcp || true
 
-exit 
+source ./install_update_custom_nodes.sh
 
-# Run ComfyUI on port 8188
-cd /workspace/ComfyUI
-source venv/bin/activate
-python main.py --listen --port 8188
+#source ./start_comfyui.sh

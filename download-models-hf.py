@@ -7,11 +7,11 @@ import threading
 
 # ----------------- Config -----------------
 model_type = os.environ.get("MODEL_TYPE")  # No default
-token = os.environ.get("HUGGINGFACE_ACCESS_TOKEN", None)
+token = os.environ.get("HF_TOKEN", None)
 home = os.environ.get("RP_WORKSPACE", "")
 comfyui = "ComfyUI"
 model_dir = os.path.join(home, comfyui, "models")
-max_workers = 4  # adjust based on bandwidth
+max_workers = 1  # adjust based on bandwidth
 
 # ----------------- Load YAML -----------------
 with open("./models.yaml") as f:
