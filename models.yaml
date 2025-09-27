@@ -40,3 +40,17 @@ models:
     - name: flux1-dev-fp8.safetensors
       path: checkpoints
       url: https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors
+
+  flux1-dev-uso:
+    - name: flux1-dev-fp8.safetensors
+      path: checkpoints
+      url: https://huggingface.co/Comfy-Org/flux1-dev/resolve/main/flux1-dev-fp8.safetensors
+    - name: uso-flux1-dit-lora-v1.safetensors
+      path: loras
+      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/loras/uso-flux1-dit-lora-v1.safetensors
+    - name: uso-flux1-projector-v1.safetensors
+      path: model_patches
+      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/model_patches/uso-flux1-projector-v1.safetensors
+    - name: sigclip_vision_patch14_384.safetensors
+      path: clip_vision
+      url: https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors
