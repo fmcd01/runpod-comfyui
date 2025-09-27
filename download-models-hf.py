@@ -84,9 +84,11 @@ def download_file(item):
                     cache_dir=path,
                     local_dir=path
                 )
-                file_path = os.path.join(path, os.path.basename(filename))
-                if file_path != dest:
-                    os.rename(file_path, dest)
+                # Move the file to desired folder (flatten)
+                final_dest = os.path.join(path, os.path.basename(filename))
+                repo_downloaded_path = os.path.join(path, filename)  # path + full repo subfolders
+                if repo_downloaded_path != final_dest:
+                    os.rename(repo_downloaded_path, final_dest)
 
             else:
                 # Generic URL download
