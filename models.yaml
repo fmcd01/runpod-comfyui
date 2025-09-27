@@ -48,9 +48,11 @@ models:
     - name: uso-flux1-dit-lora-v1.safetensors
       path: loras
       url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/loras/uso-flux1-dit-lora-v1.safetensors
+      auth: true
     - name: uso-flux1-projector-v1.safetensors
       path: model_patches
-      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/split_files/model_patches/uso-flux1-projector-v1.safetensors
+      url: https://huggingface.co/Comfy-Org/USO_1.0_Repackaged/resolve/main/split_files/model_patches/uso-flux1-projector-v1.safetensors
+      auth: true
     - name: sigclip_vision_patch14_384.safetensors
       path: clip_vision
       url: https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors
