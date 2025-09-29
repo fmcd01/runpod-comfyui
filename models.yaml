@@ -28,12 +28,42 @@ models:
 
   flux1-dev:
     - name: flux1-dev.safetensors
-      path: unet
+      path: diffusion_models
       url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors
+      auth: true
+    - name: clip_l.safetensors
+      path: text_encoders
+      url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors
+      auth: true
+    - name: t5xxl_fp16.safetensors
+      path: text_encoders
+      url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors
       auth: true
     - name: ae.safetensors
       path: vae
       url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors
+      auth: true
+
+  flux1-dev-redux:
+    - name: flux1-dev.safetensors
+      path: diffusion_models
+      url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors
+      auth: true
+    - name: clip_l.safetensors
+      path: text_encoders
+      url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors
+      auth: true
+    - name: t5xxl_fp16.safetensors
+      path: text_encoders
+      url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors
+      auth: true
+    - name: ae.safetensors
+      path: vae
+      url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/ae.safetensors
+      auth: true
+    - name: flux1-redux-dev.safetensors
+      path: style_models
+      url: https://huggingface.co/Comfy-Org/Flux1-Redux-Dev/resolve/main/flux1-redux-dev.safetensors
       auth: true
 
   flux1-dev-fp8:
@@ -57,4 +87,28 @@ models:
       path: clip_vision
       url: https://huggingface.co/Comfy-Org/sigclip_vision_384/resolve/main/sigclip_vision_patch14_384.safetensors
 
-    
+wan2-2-14B-i2v:
+    - name: umt5_xxl_fp8_e4m3fn_scaled.safetensors
+      path: text_encoders
+      url: https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+      auth: true
+    - name: wan_2.1_vae.safetensors
+      path: vae
+      url: https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors
+      auth: true
+    - name: wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors
+      path: diffusion_models
+      url: https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors
+      auth: true
+    - name: wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors
+      path: diffusion_models
+      url: https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors
+      auth: true
+    - name: wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
+      path: loras
+      url: https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
+      auth: true
+    - name: wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
+      path: loras
+      url: https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
+      auth: true
