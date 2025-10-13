@@ -11,7 +11,8 @@ mkdir -p $COMFYUI_DIR/custom_nodes
 CUSTOM_NODES=(
 	"https://github.com/ltdrdata/ComfyUI-Manager"
 	"https://github.com/kijai/ComfyUI-KJNodes"
-        "https://github.com/MoonGoblinDev/Civicomfy"
+    "https://github.com/MoonGoblinDev/Civicomfy"
+	"https://github.com/Fannovel16/comfyui_controlnet_aux"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do
