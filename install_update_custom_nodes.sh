@@ -13,6 +13,7 @@ CUSTOM_NODES=(
 	"https://github.com/kijai/ComfyUI-KJNodes"
     "https://github.com/MoonGoblinDev/Civicomfy"
 	"https://github.com/Fannovel16/comfyui_controlnet_aux"
+	"https://github.com/kijai/ComfyUI-segment-anything-2"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do
