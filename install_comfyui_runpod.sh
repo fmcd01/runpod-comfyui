@@ -11,7 +11,7 @@ apt install -y software-properties-common
 #apt update
 
 # Install Python 3.12 and required dependencies, including build tools for sentencepiece
-apt install -y python3.12 python3.12-venv python3.12-dev git python3-pip wget cmake pkg-config
+apt install -y python3.12 python3.12-venv python3.12-dev git python3-pip wget cmake pkg-config libcairo2-dev
 
 # Set Python 3.12 as the default python3
 update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
