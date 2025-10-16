@@ -138,3 +138,9 @@ models:
         path: loras
         url: https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Wan22_relight/WanAnimate_relight_lora_fp16.safetensors
         auth: true
+
+  RealESRGAN_x4plus:
+      - name: RealESRGAN_x4plus.safetensors
+        path: upscale_models
+        url: https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors
+        auth: true
