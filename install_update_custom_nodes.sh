@@ -14,6 +14,8 @@ CUSTOM_NODES=(
     "https://github.com/MoonGoblinDev/Civicomfy"
 	"https://github.com/Fannovel16/comfyui_controlnet_aux"
 	"https://github.com/kijai/ComfyUI-segment-anything-2"
+	"https://github.com/SLAPaper/ComfyUI-Image-Selector"
+	"https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do
