@@ -6,7 +6,7 @@ COMFYUI_DIR="${WORKSPACE}/ComfyUI"
 cd $COMFYUI_DIR
 source venv/bin/activate
 
-source $WORKSPACE/runpod-comfyui/install_update_custom_nodes.sh
+# source $WORKSPACE/runpod-comfyui/install_update_custom_nodes.sh
 
 cd $COMFYUI_DIR
 FIXED_ARGS="--listen 0.0.0.0 --port 8188"
