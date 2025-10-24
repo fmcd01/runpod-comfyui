@@ -82,4 +82,5 @@ done
 # Update Comfy
 cd "$COMFYUI_DIR"
 pip install --no-cache -r requirements.txt
-rm -rf custom_nodes/__pycache__
+
+find $COMFYUI_DIR -type d -name "__pycache__" -exec rm -rf {} +
