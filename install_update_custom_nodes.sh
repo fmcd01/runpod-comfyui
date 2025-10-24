@@ -12,18 +12,14 @@ mkdir -p $COMFYUI_DIR/custom_nodes
 CUSTOM_NODES=(
 	"https://github.com/ltdrdata/ComfyUI-Manager"
 	"https://github.com/kijai/ComfyUI-KJNodes"
-    "https://github.com/MoonGoblinDev/Civicomfy"
-	"https://github.com/Fannovel16/comfyui_controlnet_aux"
-	"https://github.com/kijai/ComfyUI-segment-anything-2"
-	"https://github.com/SLAPaper/ComfyUI-Image-Selector"
-	"https://github.com/FizzleDorf/ComfyUI_FizzNodes"
-	"https://github.com/cubiq/ComfyUI_essentials"
 	"https://github.com/rgthree/rgthree-comfy"
 	"https://github.com/yolain/ComfyUI-Easy-Use"
-	"https://github.com/VykosX/ControlFlowUtils"
 	"https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
-	"https://github.com/ltdrdata/was-node-suite-comfyui"
 	"https://github.com/HECer/ComfyUI-FilePathCreator"
+	"https://github.com/SLAPaper/ComfyUI-Image-Selector"
+	"https://github.com/SquirrelRat/MultiString-Prompts"
+	"https://github.com/cubiq/ComfyUI_essentials"
+	"https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do

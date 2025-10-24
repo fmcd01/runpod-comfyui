@@ -144,3 +144,9 @@ models:
         path: upscale_models
         url: https://huggingface.co/Comfy-Org/Real-ESRGAN_repackaged/resolve/main/RealESRGAN_x4plus.safetensors
         auth: true
+
+  RealESRGAN_x2.pth:
+      - name: RealESRGAN_x4plus.safetensors
+        path: upscale_models
+        url: https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x2.pth
+        auth: true
