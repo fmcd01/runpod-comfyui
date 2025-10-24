@@ -79,5 +79,5 @@ for node_dir in */; do
 done
 
 # Update Comfy
-cd "$COMFYUI_DIR
+cd "$COMFYUI_DIR"
 pip install --no-cache -r requirements.txt
