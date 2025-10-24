@@ -23,6 +23,7 @@ CUSTOM_NODES=(
 	"https://github.com/VykosX/ControlFlowUtils"
 	"https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
 	"https://github.com/ltdrdata/was-node-suite-comfyui"
+	"https://github.com/HECer/ComfyUI-FilePathCreator"
 )
 
 for repo in "${CUSTOM_NODES[@]}"; do
@@ -81,3 +82,4 @@ done
 # Update Comfy
 cd "$COMFYUI_DIR"
 pip install --no-cache -r requirements.txt
+rm -rf custom_nodes/__pycache__
