@@ -8,6 +8,7 @@ COMFYUI_DIR=/workspace/ComfyUI
 mkdir -p $COMFYUI_DIR/custom_nodes
 
 # Install additional custom nodes from Git repos
+# 	"https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
 CUSTOM_NODES=(
 	"https://github.com/ltdrdata/ComfyUI-Manager"
 	"https://github.com/kijai/ComfyUI-KJNodes"
@@ -15,7 +16,6 @@ CUSTOM_NODES=(
 	"https://github.com/Fannovel16/comfyui_controlnet_aux"
 	"https://github.com/kijai/ComfyUI-segment-anything-2"
 	"https://github.com/SLAPaper/ComfyUI-Image-Selector"
-	"https://github.com/Fannovel16/ComfyUI-Frame-Interpolation"
 	"https://github.com/FizzleDorf/ComfyUI_FizzNodes"
 	"https://github.com/cubiq/ComfyUI_essentials"
 	"https://github.com/rgthree/rgthree-comfy"
@@ -78,3 +78,6 @@ for node_dir in */; do
 	fi
 done
 
+# Update Comfy
+cd "$COMFYUI_DIR
+pip install --no-cache -r requirements.txt
